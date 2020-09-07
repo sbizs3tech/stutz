@@ -1,0 +1,85 @@
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Understanding Callback</title>
+      </head>
+         <body>
+             <b>Callback : Use it to continue further processing !
+             </br>
+             Get Account Async(callback - returns data): </b>
+             <button onclick="getAccountDetailAsync(100)"> ID -100</button>
+             <br/> <br/>
+             <button onclick="clearMessage()">Clear Message</button>
+
+             <div id="root">
+             <span v-for="(message,index) in messages" :key="index">
+               {{ message.text }}<br/>
+             </span>
+             </div>
+
+             <script type="text/javascript">
+
+             var app = new Vue({ el: '#root',
+               data: { messages: [] }
+             });
+
+             function logData(msg){
+               console.log(msg);
+               app.messages = [ ...app.messages, {"text": msg }];
+               //alert(msg);
+             }
+             function clearMessage(){
+               app.messages = [];
+               //alert(msg);
+             }
+             const accountData = [
+                 { id: 100, amount: 200000, creditCardNum: '100-1'},
+                 { id: 101, amount: 500000, creditCardNum: '101-1'}
+             ];
+             const creditCardData = [
+               { id: '100-1', amountDue: 20000 },
+               { id: '101-1', amountDue: 25000 }
+             ];
+             function getAccountDetailAsync(id){
+               logData(" Fetching Account Details for Account ID : "+ id); // 1
+             }
+             </script>
+         </body>
+       </html>
+
+    <style media="screen">
+      body {
+        text-align: center;
+      }
+
+textarea {
+  width: 95%;
+  float: left;
+  min-height: 250px;
+  overflow: scroll;
+  margin: 10px;
+  display: inline-block;
+  background: #f4f4f9;
+  outline: none;
+  font-family: Courier, sans-serif;
+  font-size: 14px;
+}
+
+.iframe {
+  bottom: 0;
+  position: relative;
+  border: 1px solid steelBlue;
+  width: 100%;
+  height: 200px;
+}
+iframe {
+  bottom: 0;
+  position: relative;
+  border: 1px solid steelBlue;
+  width: 100%;
+  height: 200px;
+}
+    </style>
+  </body>
+</html>
